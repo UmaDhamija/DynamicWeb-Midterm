@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Map</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Your Google Map</h1>
+      <div id="map"></div>
+      <script>
+
+        const api_url = "http://api.thenounproject.com/collection/bicycle/icons"
+        async function nounProject(){
+          const response = await fetch(api_url)
+        }
+
+        function initMap(){
+          //map control options
+          var options = {
+            zoom:12,
+            center:{lat:40.7128, lng:-74.0060}
+          }
+          //new map
+          var map = new
+          google.maps.Map(document.getElementById('map'), options);
+
+          //listen for click on map
+          //add marker
+          google.maps.event.addListener(map, 'click',
+          function(event){
+            addMarker({coordinates:event.latLng});
+          });
+          //is this where I would put in a custom icon parameter?
+
+          /*
+          var infoWindow = new google.maps.InfoWindow({
+            //this is where i'd like to put in the different icons from NoundProject
+            content: '<h2>NYU Tandon School of Engineering</h2>'
+          });
+
+          marker.addListener('click',function(){
+            infoWindow.open(map, marker);
+          })
+          */
+
+          addMarker({
+            coordinates:{lat:40.6942, lng:-73.9866},
+            iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content: '<h2>NYU Brooklyn Campus!</h2>'
+          });
+          addMarker({
+            coordinates:{lat:40.7247, lng:-73.9903},
+            iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content: '<h2>NYU Manhattan Campus!</h2>'
+          });
+
+          //add Marker function
+          function addMarker(prop){
+            //creating a marker on the map
+            var marker = new
+            google.maps.Marker({
+              position: prop.coordinates,
+              map:map,
+            });
+
+            if (prop.iconImage){
+              //set icon image
+              marker.setIcon(prop.iconImage);
+            }
+
+            //check content
+            if (prop.content){
+              var infoWindow = new google.maps.InfoWindow({
+                //this is where i'd like to put in the different icons from NoundProject
+                content: prop.content
+              });
+
+              marker.addListener('click',function(){
+                infoWindow.open(map, marker);
+              })
+            }
+          }
+
+        }
+
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeMne-5HjXy23AuqVfiDV1U8_BK-3ja0Q&callback=initMap"
+        async defer>
+      </script>
+    </div>
+  </body>
+
+</html>
