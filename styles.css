@@ -1,11 +1,33 @@
 #map{
-  height: 60vh;
+  height: 70vh;
   width: 100%;
-  border: solid white 2px;
+  border: solid #365881 2px;
 }
 
 .container{
-  height: 90vh;
+  height: 100vh;
+}
+
+.menu{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color:black;
+}
+
+.menu a{
+  text-decoration: none;
+}
+
+.menu_text{
+  margin: 20px;
+  padding: 10px;
+  color: white;
+  font-size: 30px;
+}
+
+.menu a:hover{
+  color: #365881;
 }
 
 body{
@@ -15,8 +37,30 @@ body{
 }
 
 h1{
-  margin: 15vh;
   color: white;
   text-align: center;
   font: 40px;
+}
+
+p{
+  color: #365881;
+  text-align: center;
+}
+
+.potential{
+  color:#383838;
+  text-align: center;
+  font-size: 10px;
+}
+
+h1:hover{
+  color: #365881;
+}
+
+h1:hover #map{
+  border: solid red 4px;
+}
+
+h1:hover p{
+  color: red;
 }
